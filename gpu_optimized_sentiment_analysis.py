@@ -287,15 +287,19 @@ def improved_sentiment_analysis(X_train, y_train, X_test, y_test, X_val, y_val, 
     overall_start_time = time.time()
     
     # Limit datasets to 100k samples each
-    X_train = X_train[:100000]
-    y_train = y_train[:100000]
-    X_val = X_val[:100000]
-    y_val = y_val[:100000]
-    X_test = X_test[:100000]
-    y_test = y_test[:100000]
-    processed_texts_train = processed_texts_train[:100000]
-    processed_texts_val = processed_texts_val[:100000]
-    processed_texts_test = processed_texts_test[:100000]
+    X_train = X_train[:10000]
+    y_train = y_train[:10000]
+    X_val = X_val[:10000]
+    y_val = y_val[:10000]
+    X_test = X_test[:10000]
+    y_test = y_test[:10000]
+    processed_texts_train = processed_texts_train[:10000]
+    processed_texts_val = processed_texts_val[:10000]
+    processed_texts_test = processed_texts_test[:10000]
+
+    y_train = y_train - 1
+    y_val = y_val - 1
+    y_test = y_test - 1
     
     # Check for GPU availability
     check_gpu()
@@ -307,6 +311,10 @@ def improved_sentiment_analysis(X_train, y_train, X_test, y_test, X_val, y_val, 
 
     print(f"Original feature shape: {X_train.shape}")
     print(f"Enhanced feature shape: {X_train_enhanced.shape}")
+
+    print("Unique labels in y_train:", np.unique(y_train))
+    print("Unique labels in y_val:", np.unique(y_val))
+    print("Unique labels in y_test:", np.unique(y_test))
 
     # Create and train the stacking ensemble
     base_models, meta_learner, val_accuracy = create_stacking_ensemble(
