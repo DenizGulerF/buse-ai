@@ -1,0 +1,10 @@
+numpy
+pandas
+scikit-learn
+scipy
+tqdm
+torch
+cupy-cuda11x
+cudf-cu11
+cuml-cu11
+xgboost
